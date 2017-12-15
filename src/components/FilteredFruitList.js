@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 
 class FilteredFruitList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: []
-    };
-  }
-
-  componentWillMount() {
-    fetch('/api/fruit')
-      .then(response => response.json())
-      .then(items => this.setState({ items }));
-  }
 
   render() {
-    const list = !this.props.filter || this.props.filter === 'all' ? this.state.items : this.state.items.filter(i => i.fruit_type === this.props.filter);
+    const list = !this.props.filter || this.props.filter === 'all' ? this.props.items : this.props.items.filter(i => i.fruit_type === this.props.filter);
 
     return (
       <ul className="fruit-list">
